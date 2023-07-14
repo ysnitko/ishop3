@@ -1,0 +1,72 @@
+[
+    {
+      "id": 1,
+      "title": "Eltreco Green City E-Alfa New",
+      "src": "./img/Eltreco_Green_City_E-Alfa_New.jpeg",
+      "price": 150.98,
+      "quantity": 1
+    },
+    {
+        "id": 2,
+        "title": "Eltreco XT 600D 2021",
+        "src": "./img/Eltreco_XT_600_D_2021.jpeg",
+        "price": 100.55,
+        "quantity": 3
+    },
+    {
+        "id": 3,
+        "title": "Forward Omega 28 E-250 2022",
+        "src": "./img/Forward_Omega_28_E-250_2022.jpeg",
+        "price": 321.4,
+        "quantity": 10
+    },
+    {
+        "id": 4,
+        "title": "Forward Riviera 24 E-250 2022",
+        "src": "./img/Forward_Riviera_24_E-250_2022.jpeg",
+        "price": 90.23,
+        "quantity": 5
+    },
+    {
+        "id": 5,
+        "title": "Hiper Engine Graphite",
+        "src": "./img/Hiper_Engine_Graphite.jpeg",
+        "price": 213.05,
+        "quantity": 9
+    },
+    {
+        "id": 6,
+        "title": "Hiper Fest F2 Midnight Blue",
+        "src": "./img/Hiper_Fest_F2_Midnight_Blue.jpeg",
+        "price": 54.94,
+        "quantity": 2
+    },
+    {
+        "id": 7,
+        "title": "Hiper Fest F3 Graphite (2023)",
+        "src": "./img/Hiper_Fest_F3_Graphite_(2023).jpeg",
+        "price": 239.31,
+        "quantity": 7
+    },
+    {
+        "id": 8,
+        "title": "Kugoo_V1",
+        "src": "./img/kugoo_V1.jpeg",
+        "price": 154.93,
+        "quantity": 5
+    },
+    {
+        "id": 9,
+        "title": "Minako V8 Pro",
+        "src": "./img/Minako_V8_Pro_001134.jpeg",
+        "price": 156.94,
+        "quantity": 3
+    },
+    {
+        "id": 10,
+        "title": "MYATU M0126 (2019)",
+        "src": "./img/MYATU_M0126_(2019).jpeg",
+        "price": 29.31,
+        "quantity": 19
+    }
+  ]
