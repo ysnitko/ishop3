@@ -7,7 +7,6 @@ class NewProduct extends Component {
     id: PropTypes.number,
     title: PropTypes.string,
     src: PropTypes.string,
-    key: PropTypes.number,
     price: PropTypes.number,
     quantity: PropTypes.number,
     keys: PropTypes.number.isRequired,
@@ -15,10 +14,12 @@ class NewProduct extends Component {
     cbCancelAddProductBtn: PropTypes.func.isRequired,
     showEditProduct: PropTypes.bool,
     showAddProduct: PropTypes.bool,
-    cbEditProductClick: PropTypes.func,
+    cbSaveProduct: PropTypes.func,
+    cbEditProductChange: PropTypes.func,
   };
 
   state = {
+    id: this.props.id,
     key: this.props.keys + 1,
     title: '',
     src: '',
@@ -30,13 +31,13 @@ class NewProduct extends Component {
     editQuantity: this.props.quantity,
   };
 
-  handleChangeAddInput = (event) => {
+  handleInputChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     });
   };
 
-  handleChangeEditInput = (event) => {
+  handleChange = (event) => {
     if (event.target.name === 'title') {
       this.setState({
         editTitle: event.target.value,
@@ -60,6 +61,7 @@ class NewProduct extends Component {
         editQuantity: event.target.value,
       });
     }
+    this.props.cbEditProductChange(true);
   };
 
   isValidAddProductForm = () => {
@@ -103,6 +105,17 @@ class NewProduct extends Component {
     this.props.cbAddProduct(newProduct);
   };
 
+  handleSaveProduct = (event) => {
+    event.preventDefault();
+    this.props.cbSaveProduct(
+      this.state.id,
+      this.state.editTitle,
+      this.state.editSrc,
+      this.state.editPrice,
+      this.state.editQuantity
+    );
+  };
+
   render() {
     if (this.props.showEditProduct) {
       return (
@@ -117,7 +130,7 @@ class NewProduct extends Component {
                 name="title"
                 type="text"
                 value={this.state.editTitle}
-                onChange={this.handleChangeEditInput}
+                onChange={this.handleChange}
               />
               {!this.state.editTitle ? (
                 <span className="Validate-massage">
@@ -134,7 +147,7 @@ class NewProduct extends Component {
                 name="price"
                 type="text"
                 value={this.state.editPrice}
-                onChange={this.handleChangeEditInput}
+                onChange={this.handleChange}
               />
               {!this.state.editPrice ||
               isNaN(this.state.editPrice) ||
@@ -154,7 +167,7 @@ class NewProduct extends Component {
                 name="src"
                 type="text"
                 value={this.state.editSrc}
-                onChange={this.handleChangeEditInput}
+                onChange={this.handleChange}
               />
               {!this.state.editSrc ? (
                 <span className="Validate-massage">
@@ -171,7 +184,7 @@ class NewProduct extends Component {
                 name="quantity"
                 type="text"
                 value={this.state.editQuantity}
-                onChange={this.handleChangeEditInput}
+                onChange={this.handleChange}
               />
               {!this.state.editQuantity ||
               isNaN(this.state.editQuantity) ||
@@ -188,7 +201,7 @@ class NewProduct extends Component {
               className="Save-btn"
               type="button"
               value="Save"
-              // onClick={this.handleSaveProduct} написать
+              onClick={this.handleSaveProduct}
               disabled={this.isValidEditForm()}
             />
             <input
@@ -205,7 +218,7 @@ class NewProduct extends Component {
       return (
         <form className="NewProduct">
           <h1>Add new Product</h1>
-          <span>ID: {this.state.key}</span>
+          <span>ID: {this.props.keys + 1}</span>
           <label htmlFor="Title_product">
             <span>Title</span>
             <div className="Input">
@@ -214,7 +227,7 @@ class NewProduct extends Component {
                 name="title"
                 type="text"
                 value={this.state.title}
-                onChange={this.handleChangeAddInput}
+                onChange={this.handleInputChange}
               />
               {!this.state.title ? (
                 <span className="Validate-massage">
@@ -230,8 +243,8 @@ class NewProduct extends Component {
                 id="Price_product"
                 name="price"
                 type="text"
-                value={this.props.price}
-                onChange={this.handleChangeAddInput}
+                value={this.state.price}
+                onChange={this.handleInputChange}
               />
               {!this.state.price ||
               isNaN(this.state.price) ||
@@ -251,7 +264,7 @@ class NewProduct extends Component {
                 name="src"
                 type="text"
                 value={this.state.src}
-                onChange={this.handleChangeAddInput}
+                onChange={this.handleInputChange}
               />
               {!this.state.src ? (
                 <span className="Validate-massage">
@@ -268,7 +281,7 @@ class NewProduct extends Component {
                 name="quantity"
                 type="text"
                 value={this.state.quantity}
-                onChange={this.handleChangeAddInput}
+                onChange={this.handleInputChange}
               />
               {!this.state.quantity ||
               isNaN(this.state.quantity) ||

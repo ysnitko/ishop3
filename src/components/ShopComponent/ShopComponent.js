@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import ProductComponent from "../ProductComponent/ProductComponent";
-import CardComponent from "../CardComponent/CardComponent";
-import HeaderComponent from "../HeaderComponent/HeaderComponent";
-import NewProduct from "../NewProduct/NewProduct";
-import "./ShopComponent.css";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import ProductComponent from '../ProductComponent/ProductComponent';
+import CardComponent from '../CardComponent/CardComponent';
+import HeaderComponent from '../HeaderComponent/HeaderComponent';
+import NewProduct from '../NewProduct/NewProduct';
+import './ShopComponent.css';
 
 class ShopComponent extends Component {
   static propTypes = {
@@ -20,6 +20,11 @@ class ShopComponent extends Component {
   };
 
   state = {
+    id: null,
+    title: '',
+    src: '',
+    quantity: null,
+    price: null,
     showAddProduct: false,
     showEditProduct: false,
     newProductsList: this.props.productsItems,
@@ -28,7 +33,7 @@ class ShopComponent extends Component {
   };
 
   deleteProduct = (id) => {
-    if (window.confirm("Are you sure you want to delete this product")) {
+    if (window.confirm('Are you sure you want to delete this product')) {
       var newList = this.state.newProductsList.filter((item) => item.id !== id);
       this.setState({ newProductsList: newList, selectedId: null });
     }
@@ -56,15 +61,44 @@ class ShopComponent extends Component {
   editProductClick = (id) => {
     this.setState({
       selectedId: id,
-      isButtonsBlock: true,
       showEditProduct: true,
       showAddProduct: false,
+    });
+  };
+
+  editProductChange = (bool) => {
+    this.setState({
+      isButtonsBlock: bool,
     });
   };
 
   cancelAddProductBtn = () => {
     this.setState({
       showAddProduct: false,
+      showEditProduct: false,
+      isButtonsBlock: false,
+    });
+  };
+
+  saveProduct = (id, title, src, price, quantity) => {
+    const updateProduct = this.state.newProductsList.find(
+      (item) => item.id === id
+    );
+    const changeProducts = [...this.state.newProductsList];
+    const newValue = {
+      ...updateProduct,
+      title: title,
+      src: src,
+      quantity: quantity,
+      price: price,
+    };
+
+    const updatedProducts = changeProducts.map((product) =>
+      product.id === id ? newValue : product
+    );
+
+    this.setState({
+      newProductsList: updatedProducts,
       showEditProduct: false,
       isButtonsBlock: false,
     });
@@ -89,7 +123,6 @@ class ShopComponent extends Component {
           cbAddProduct={this.addProduct}
           keys={keys}
           showAddProduct={this.state.showAddProduct}
-          isButtonsBlock={this.state.isButtonsBlock}
         />
       );
     }
@@ -97,10 +130,11 @@ class ShopComponent extends Component {
       const editedFormValue = this.state.newProductsList.find(
         (item) => item.id === this.state.selectedId
       );
+
       return (
         <NewProduct
-          key={this.props.id}
-          id={this.state.selectedId}
+          key={editedFormValue.id}
+          id={editedFormValue.id}
           title={editedFormValue.title}
           src={editedFormValue.src}
           price={editedFormValue.price}
@@ -110,7 +144,8 @@ class ShopComponent extends Component {
           keys={keys}
           cbEditProductClick={this.editProductClick}
           showEditProduct={this.state.showEditProduct}
-          isButtonsBlock={this.state.isButtonsBlock}
+          cbSaveProduct={this.saveProduct}
+          cbEditProductChange={this.editProductChange}
         />
       );
     }
