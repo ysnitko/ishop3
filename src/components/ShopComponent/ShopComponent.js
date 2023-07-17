@@ -30,6 +30,7 @@ class ShopComponent extends Component {
     newProductsList: this.props.productsItems,
     selectedId: null,
     isButtonsBlock: false,
+    isEditing: false,
   };
 
   deleteProduct = (id) => {
@@ -39,15 +40,25 @@ class ShopComponent extends Component {
     }
   };
 
+  isEdit = () => {
+    this.setState({
+      isEditing: true,
+    });
+  };
+
   findMaxKey = (arr) => {
     const keys = arr.map((item) => item.key);
     return Math.max.apply(null, keys);
   };
 
   selectedProductId = (id) => {
-    this.setState({
-      selectedId: id,
-    });
+    if (this.state.isEditing) {
+      return;
+    } else {
+      this.setState({
+        selectedId: id,
+      });
+    }
   };
 
   newProductClick = () => {
@@ -77,6 +88,7 @@ class ShopComponent extends Component {
       showAddProduct: false,
       showEditProduct: false,
       isButtonsBlock: false,
+      isEditing: false,
     });
   };
 
@@ -101,6 +113,7 @@ class ShopComponent extends Component {
       newProductsList: updatedProducts,
       showEditProduct: false,
       isButtonsBlock: false,
+      isEditing: false,
     });
   };
 
@@ -146,6 +159,8 @@ class ShopComponent extends Component {
           showEditProduct={this.state.showEditProduct}
           cbSaveProduct={this.saveProduct}
           cbEditProductChange={this.editProductChange}
+          cbIsEdit={this.isEdit}
+          cbSelectedProductId={this.selectedProductId}
         />
       );
     }
@@ -170,6 +185,7 @@ class ShopComponent extends Component {
           cbEditProductClick={this.editProductClick}
           isButtonsBlock={this.state.isButtonsBlock}
           showAddProduct={this.state.showAddProduct}
+          isEditing={this.state.isEditing}
         />
       );
     });

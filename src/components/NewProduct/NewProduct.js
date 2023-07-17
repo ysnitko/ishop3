@@ -16,6 +16,8 @@ class NewProduct extends Component {
     showAddProduct: PropTypes.bool,
     cbSaveProduct: PropTypes.func,
     cbEditProductChange: PropTypes.func,
+    cbIsEdit: PropTypes.func,
+    cbSelectedProductId: PropTypes.func,
   };
 
   state = {
@@ -62,6 +64,8 @@ class NewProduct extends Component {
       });
     }
     this.props.cbEditProductChange(true);
+    this.props.cbIsEdit();
+    this.props.cbSelectedProductId(this.props.id);
   };
 
   isValidAddProductForm = () => {

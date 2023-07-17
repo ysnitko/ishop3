@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import "./ProductComponent.css";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import './ProductComponent.css';
 
 class ProductComponent extends Component {
   static propTypes = {
@@ -14,16 +14,17 @@ class ProductComponent extends Component {
     quantity: PropTypes.number.isRequired,
     cbEditProductClick: PropTypes.func.isRequired,
     isButtonsBlock: PropTypes.bool,
+    isEditing: PropTypes.bool,
     showAddProduct: PropTypes.bool,
   };
 
-  cbSelectedProductId = () => {
-    this.props.cbSelectedProductId(this.props.id);
-  };
+  // cbSelectedProductId = () => {
+  //   this.props.cbSelectedProductId(this.props.id);
+  // };
 
-  cbDeleteProduct = () => {
-    this.props.cbDeleteProduct(this.props.id);
-  };
+  // cbDeleteProduct = () => {
+  //   this.props.cbDeleteProduct(this.props.id);
+  // };
 
   cbEditProductClick = () => {
     this.props.cbEditProductClick(this.props.id);
@@ -34,16 +35,16 @@ class ProductComponent extends Component {
       <div
         className="ProductComponent"
         style={
-          this.props.showAddProduct
+          this.props.showAddProduct || this.props.isEditing
             ? {}
             : {
                 backgroundColor:
                   this.props.id === this.props.selectedId
-                    ? "#ccc"
-                    : "transparent",
+                    ? '#ccc'
+                    : 'transparent',
               }
         }
-        onClick={this.cbSelectedProductId}
+        onClick={() => this.props.cbSelectedProductId(this.props.id)}
       >
         <span className="Title">{this.props.title}</span>
         <span className="Url">{this.props.src}</span>
@@ -59,7 +60,7 @@ class ProductComponent extends Component {
           </button>
           <button
             className="Delete_item"
-            onClick={this.cbDeleteProduct}
+            onClick={() => this.props.cbDeleteProduct(this.props.id)}
             disabled={this.props.isButtonsBlock}
           >
             Delete
