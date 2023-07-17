@@ -18,14 +18,6 @@ class ProductComponent extends Component {
     showAddProduct: PropTypes.bool,
   };
 
-  // cbSelectedProductId = () => {
-  //   this.props.cbSelectedProductId(this.props.id);
-  // };
-
-  // cbDeleteProduct = () => {
-  //   this.props.cbDeleteProduct(this.props.id);
-  // };
-
   cbEditProductClick = () => {
     this.props.cbEditProductClick(this.props.id);
   };

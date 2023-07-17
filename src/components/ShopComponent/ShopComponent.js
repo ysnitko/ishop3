@@ -55,9 +55,12 @@ class ShopComponent extends Component {
     if (this.state.isEditing) {
       return;
     } else {
-      this.setState({
-        selectedId: id,
-      });
+      this.setState(
+        {
+          selectedId: id,
+        },
+        this.cancelAddProductBtn
+      );
     }
   };
 
