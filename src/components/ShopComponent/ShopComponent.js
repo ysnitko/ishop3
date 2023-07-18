@@ -76,6 +76,8 @@ class ShopComponent extends Component {
       showEditProduct: false,
       isButtonsBlock: true,
     });
+    this.editProductChange(true);
+    this.isEdit();
   };
 
   editProductClick = (id) => {
@@ -133,6 +135,7 @@ class ShopComponent extends Component {
       showAddProduct: false,
       isButtonsBlock: false,
       selectedId: newProduct.id,
+      isEditing: false,
     });
   };
 
