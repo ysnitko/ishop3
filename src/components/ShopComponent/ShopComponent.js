@@ -126,6 +126,7 @@ class ShopComponent extends Component {
       newProductsList: newProductList,
       showAddProduct: false,
       isButtonsBlock: false,
+      selectedId: newProduct.id,
     });
   };
 
@@ -163,7 +164,6 @@ class ShopComponent extends Component {
           cbSaveProduct={this.saveProduct}
           cbEditProductChange={this.editProductChange}
           cbIsEdit={this.isEdit}
-          cbSelectedProductId={this.selectedProductId}
         />
       );
     }
@@ -175,21 +175,39 @@ class ShopComponent extends Component {
     );
     const listItems = this.state.newProductsList.map((item) => {
       return (
-        <ProductComponent
-          key={item.id}
-          id={item.id}
-          title={item.title}
-          src={item.src}
-          price={item.price}
-          quantity={item.quantity}
-          cbDeleteProduct={this.deleteProduct}
-          selectedId={this.state.selectedId}
-          cbSelectedProductId={this.selectedProductId}
-          cbEditProductClick={this.editProductClick}
-          isButtonsBlock={this.state.isButtonsBlock}
-          showAddProduct={this.state.showAddProduct}
-          isEditing={this.state.isEditing}
-        />
+        <div className="ProductsContainer" key={item.id}>
+          <ProductComponent
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            src={item.src}
+            price={item.price}
+            quantity={item.quantity}
+            cbDeleteProduct={this.deleteProduct}
+            selectedId={this.state.selectedId}
+            cbSelectedProductId={this.selectedProductId}
+            cbEditProductClick={this.editProductClick}
+            isButtonsBlock={this.state.isButtonsBlock}
+            showAddProduct={this.state.showAddProduct}
+            isEditing={this.state.isEditing}
+          />
+          <div className="Buttons_block">
+            <button
+              className="Edit_item"
+              onClick={() => this.editProductClick(item.id)}
+              disabled={this.state.isButtonsBlock}
+            >
+              Edit
+            </button>
+            <button
+              className="Delete_item"
+              onClick={() => this.deleteProduct(item.id)}
+              disabled={this.state.isButtonsBlock}
+            >
+              Delete
+            </button>
+          </div>
+        </div>
       );
     });
     const keys = this.findMaxKey(listItems);

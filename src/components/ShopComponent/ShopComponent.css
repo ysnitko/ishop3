@@ -24,3 +24,11 @@
   background-color: #a8eb12;
   cursor: pointer;
 }
+
+.ProductsContainer {
+  display: flex;
+}
+
+.Edit_item, .Delete_item {
+  margin-bottom: 5px;
+}

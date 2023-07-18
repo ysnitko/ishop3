@@ -42,7 +42,7 @@ class ProductComponent extends Component {
         <span className="Url">{this.props.src}</span>
         <span className="Price">{this.props.price}</span>
         <span className="Quantity">{this.props.quantity}</span>
-        <div className="Buttons_block">
+        {/* <div className="Buttons_block">
           <button
             className="Edit_item"
             onClick={this.cbEditProductClick}
@@ -57,7 +57,7 @@ class ProductComponent extends Component {
           >
             Delete
           </button>
-        </div>
+        </div> */}
       </div>
     );
   }
