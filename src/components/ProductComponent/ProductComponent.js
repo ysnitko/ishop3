@@ -6,20 +6,13 @@ class ProductComponent extends Component {
   static propTypes = {
     cbSelectedProductId: PropTypes.func.isRequired,
     selectedId: PropTypes.number,
-    cbDeleteProduct: PropTypes.func.isRequired,
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     quantity: PropTypes.number.isRequired,
-    cbEditProductClick: PropTypes.func.isRequired,
-    isButtonsBlock: PropTypes.bool,
     isEditing: PropTypes.bool,
     showAddProduct: PropTypes.bool,
-  };
-
-  cbEditProductClick = () => {
-    this.props.cbEditProductClick(this.props.id);
   };
 
   render() {
@@ -42,22 +35,6 @@ class ProductComponent extends Component {
         <span className="Url">{this.props.src}</span>
         <span className="Price">{this.props.price}</span>
         <span className="Quantity">{this.props.quantity}</span>
-        {/* <div className="Buttons_block">
-          <button
-            className="Edit_item"
-            onClick={this.cbEditProductClick}
-            disabled={this.props.isButtonsBlock}
-          >
-            Edit
-          </button>
-          <button
-            className="Delete_item"
-            onClick={() => this.props.cbDeleteProduct(this.props.id)}
-            disabled={this.props.isButtonsBlock}
-          >
-            Delete
-          </button>
-        </div> */}
       </div>
     );
   }

@@ -47,7 +47,7 @@ class NewProduct extends Component {
 
     if (event.target.name === 'price') {
       this.setState({
-        editPrice: event.target.value,
+        editPrice: parseFloat(event.target.value) || '',
       });
     }
 
@@ -59,7 +59,7 @@ class NewProduct extends Component {
 
     if (event.target.name === 'quantity') {
       this.setState({
-        editQuantity: event.target.value,
+        editQuantity: parseInt(event.target.value) || '',
       });
     }
     this.props.cbEditProductChange(true);

@@ -35,8 +35,14 @@ class ShopComponent extends Component {
 
   deleteProduct = (id) => {
     if (window.confirm('Are you sure you want to delete this product')) {
-      var newList = this.state.newProductsList.filter((item) => item.id !== id);
-      this.setState({ newProductsList: newList, selectedId: null });
+      const newList = this.state.newProductsList.filter(
+        (item) => item.id !== id
+      );
+      this.setState({
+        newProductsList: newList,
+        selectedId: null,
+        showEditProduct: false,
+      });
     }
   };
 
@@ -151,7 +157,7 @@ class ShopComponent extends Component {
       return (
         <NewProduct
           key={editedFormValue.id}
-          id={editedFormValue.id}
+          id={editedFormValue.id || this.state.selectedId}
           title={editedFormValue.title}
           src={editedFormValue.src}
           price={editedFormValue.price}
@@ -183,11 +189,8 @@ class ShopComponent extends Component {
             src={item.src}
             price={item.price}
             quantity={item.quantity}
-            cbDeleteProduct={this.deleteProduct}
             selectedId={this.state.selectedId}
             cbSelectedProductId={this.selectedProductId}
-            cbEditProductClick={this.editProductClick}
-            isButtonsBlock={this.state.isButtonsBlock}
             showAddProduct={this.state.showAddProduct}
             isEditing={this.state.isEditing}
           />
