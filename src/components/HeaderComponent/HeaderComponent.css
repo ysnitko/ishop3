@@ -1,11 +1,12 @@
 .TableHeader {
   display: grid;
-  width: 100%;
   grid-template-columns: repeat(auto-fill, 200px 270px 50px 70px 130px);
   text-align: center;
   gap: 15px;
   padding: 10px;
+  margin-bottom: 10px;
   font-family: "Roboto", sans-serif;
   font-size: 12px;
   font-weight: 700;
+  border-bottom: 1px solid #ccc;
 }

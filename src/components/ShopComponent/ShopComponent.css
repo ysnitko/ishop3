@@ -29,6 +29,16 @@
   display: flex;
 }
 
-.Edit_item, .Delete_item {
-  margin-bottom: 5px;
+.Edit_item,
+.Delete_item {
+  margin: 5px 0;
+  border: none;
+  padding: 0px 15px;
+  background-color: #a8eb12;
+  cursor: pointer;
+}
+
+.Buttons_block {
+  display: flex;
+  gap: 10px;
 }

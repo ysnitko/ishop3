@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './NewProduct.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "./NewProduct.css";
 
 class NewProduct extends Component {
   static propTypes = {
@@ -22,12 +22,12 @@ class NewProduct extends Component {
   state = {
     id: this.props.id,
     key: this.props.keys + 1,
-    title: '',
-    src: '',
-    price: '',
-    quantity: '',
+    title: "",
+    src: "",
+    price: "",
+    quantity: "",
     editTitle: this.props.title,
-    editPrice: this.props.price,
+    editPrice: this.props.price + "",
     editSrc: this.props.src,
     editQuantity: this.props.quantity,
   };
@@ -39,27 +39,27 @@ class NewProduct extends Component {
   };
 
   handleChange = (event) => {
-    if (event.target.name === 'title') {
+    if (event.target.name === "title") {
       this.setState({
         editTitle: event.target.value,
       });
     }
 
-    if (event.target.name === 'price') {
+    if (event.target.name === "price") {
       this.setState({
-        editPrice: parseFloat(event.target.value) || '',
+        editPrice: event.target.value,
       });
     }
 
-    if (event.target.name === 'src') {
+    if (event.target.name === "src") {
       this.setState({
         editSrc: event.target.value,
       });
     }
 
-    if (event.target.name === 'quantity') {
+    if (event.target.name === "quantity") {
       this.setState({
-        editQuantity: parseInt(event.target.value) || '',
+        editQuantity: event.target.value,
       });
     }
     this.props.cbEditProductChange(true);
@@ -68,29 +68,29 @@ class NewProduct extends Component {
 
   isValidAddProductForm = () => {
     return (
-      this.state.quantity === '' ||
+      this.state.quantity === "" ||
       isNaN(this.state.quantity) ||
       +this.state.quantity < 0 ||
       !Number.isInteger(+this.state.quantity) ||
-      this.state.price === '' ||
+      this.state.price === "" ||
       isNaN(this.state.price) ||
       parseFloat(this.state.price) < 0 ||
-      this.state.title === '' ||
-      this.state.src === ''
+      this.state.title === "" ||
+      this.state.src === ""
     );
   };
 
   isValidEditForm = () => {
     return (
-      this.state.editQuantity === '' ||
+      this.state.editQuantity === "" ||
       isNaN(this.state.editQuantity) ||
       +this.state.editQuantity < 0 ||
       !Number.isInteger(+this.state.editQuantity) ||
-      this.state.editPrice === '' ||
+      this.state.editPrice === "" ||
       isNaN(this.state.editPrice) ||
       parseFloat(this.state.editPrice) < 0 ||
-      this.state.editTitle === '' ||
-      this.state.editSrc === ''
+      this.state.editTitle === "" ||
+      this.state.editSrc === ""
     );
   };
 

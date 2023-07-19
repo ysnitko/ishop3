@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ProductComponent from '../ProductComponent/ProductComponent';
-import CardComponent from '../CardComponent/CardComponent';
-import HeaderComponent from '../HeaderComponent/HeaderComponent';
-import NewProduct from '../NewProduct/NewProduct';
-import './ShopComponent.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import ProductComponent from "../ProductComponent/ProductComponent";
+import CardComponent from "../CardComponent/CardComponent";
+import HeaderComponent from "../HeaderComponent/HeaderComponent";
+import NewProduct from "../NewProduct/NewProduct";
+import "./ShopComponent.css";
 
 class ShopComponent extends Component {
   static propTypes = {
@@ -21,8 +21,8 @@ class ShopComponent extends Component {
 
   state = {
     id: null,
-    title: '',
-    src: '',
+    title: "",
+    src: "",
     quantity: null,
     price: null,
     showAddProduct: false,
@@ -34,7 +34,7 @@ class ShopComponent extends Component {
   };
 
   deleteProduct = (id) => {
-    if (window.confirm('Are you sure you want to delete this product')) {
+    if (window.confirm("Are you sure you want to delete this product")) {
       const newList = this.state.newProductsList.filter(
         (item) => item.id !== id
       );
@@ -163,8 +163,8 @@ class ShopComponent extends Component {
           id={editedFormValue.id || this.state.selectedId}
           title={editedFormValue.title}
           src={editedFormValue.src}
-          price={editedFormValue.price}
-          quantity={editedFormValue.quantity}
+          price={parseFloat(editedFormValue.price)}
+          quantity={parseInt(editedFormValue.quantity)}
           cbCancelAddProductBtn={this.cancelAddProductBtn}
           cbAddProduct={this.addProduct}
           keys={keys}
@@ -190,8 +190,8 @@ class ShopComponent extends Component {
             id={item.id}
             title={item.title}
             src={item.src}
-            price={item.price}
-            quantity={item.quantity}
+            price={parseFloat(item.price)}
+            quantity={parseInt(item.quantity)}
             selectedId={this.state.selectedId}
             cbSelectedProductId={this.selectedProductId}
             showAddProduct={this.state.showAddProduct}

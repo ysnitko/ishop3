@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './ProductComponent.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "./ProductComponent.css";
 
 class ProductComponent extends Component {
   static propTypes = {
@@ -25,8 +25,8 @@ class ProductComponent extends Component {
             : {
                 backgroundColor:
                   this.props.id === this.props.selectedId
-                    ? '#ccc'
-                    : 'transparent',
+                    ? "#ccc"
+                    : "transparent",
               }
         }
         onClick={() => this.props.cbSelectedProductId(this.props.id)}
